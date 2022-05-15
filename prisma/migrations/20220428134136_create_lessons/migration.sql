@@ -1,0 +1,24 @@
+BEGIN TRY
+
+BEGIN TRAN;
+
+-- CreateTable
+CREATE TABLE [dbo].[Lesson] (
+    [id] NVARCHAR(1000) NOT NULL,
+    [tittle] NVARCHAR(1000) NOT NULL,
+    [description] NVARCHAR(1000) NOT NULL,
+    CONSTRAINT [Lesson_pkey] PRIMARY KEY CLUSTERED ([id])
+);
+
+COMMIT TRAN;
+
+END TRY
+BEGIN CATCH
+
+IF @@TRANCOUNT > 0
+BEGIN
+    ROLLBACK TRAN;
+END;
+THROW
+
+END CATCH
